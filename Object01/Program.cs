@@ -22,25 +22,42 @@ namespace Object01
         }
     }
 
-    class teglalap
+    class Teglalap
     {
-        public int a;
-        public int b;
+        private int a;
+        private int b;
 
-        public int Kerulet()
+        public Teglalap(int oldalA, int oldalB)
+        {
+            a = oldalA;
+            b = oldalB;
+        }
+        private int Kerulet()
         {
             return 2 * (a + b);
         }
 
-        public int Terulet()
+        private int Terulet()
         {
             return a * b;
         }
     }
 
-    class kor
+    class Kor
     {
-        public int r;
+        private int r;
+
+        public Kor(int sugar)
+        {
+            if (sugar < 1)
+            {
+                r = 1;
+            }
+            else
+            {
+                r = sugar;
+            }
+        }
 
         public double Kerulet()
         {
@@ -50,6 +67,13 @@ namespace Object01
         public double Terulet()
         {
             return Math.Pow(r,2) * Math.PI;
+        }
+
+        public void AdatokKiirasa()
+        {
+            Console.WriteLine("Sugár: {0}", r);
+            Console.WriteLine("Terület: {0}", Terulet());
+            Console.WriteLine("Kerület: {0}", Kerulet());
         }
     }
 
@@ -71,21 +95,30 @@ namespace Object01
             Console.WriteLine(Pisti.Bemutatkozas());
             Console.WriteLine(Eva.Bemutatkozas());
 
-            teglalap t = new teglalap();
+            Console.Write("Adja meg az 'a' oldalt: ");
+            int oldalA = int.Parse(Console.ReadLine());
+            Console.Write("Adja meg a 'b' oldalt: ");
+            int oldalB = int.Parse(Console.ReadLine());
+            Teglalap t = new Teglalap(oldalA,oldalB);
 
-            Console.Write("A téglalap 'a' oldala: ");
-            t.a = Convert.ToInt32(Console.ReadLine());
-            Console.Write("A téglalap 'b' oldala: ");
-            t.b = Convert.ToInt32(Console.ReadLine());
+
+            //Console.Write("A téglalap 'a' oldala: ");
+            //t.a = Convert.ToInt32(Console.ReadLine());
+            //Console.Write("A téglalap 'b' oldala: ");
+            //t.b = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine($"Téglalap vagyok, terület: {t.Terulet()}, kerület: {t.Kerulet()}.");
 
-            kor k = new kor();
+            Console.Write("Adja meg a kör sugarát.");
+            int sugar = int.Parse(Console.ReadLine());
+            Kor k = new Kor(sugar);
 
-            Console.Write("A kör kerülete: ");
-            k.r = Convert.ToInt32(Console.ReadLine());
+            //Console.Write("A kör kerülete: ");
+            //k.r = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine($"A kör kerülete: {k.Kerulet()}, területe: {k.Terulet()}");
+            Console.WriteLine("A kör adatai");
+            k.AdatokKiirasa();
             
 
             Console.ReadKey();
